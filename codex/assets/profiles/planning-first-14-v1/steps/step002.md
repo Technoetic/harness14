@@ -7,6 +7,8 @@ phase: planning
 
 ## 목표
 
+설계 확정 뒤 구현 전에 플러그인 `docs/requirement-coverage.md`에 따라 TOPIC의 요구 목록과 검증 기준·검사 ID 연결을 검토하여 freeze한다. 반환된 SHA256을 `harness50.quality.json` schema2의 `requirements.inventory_sha256`에 등록한다. 이 목록의 모든 검사를 최종 QA에 포함하며, 목록의 자연어 완전성은 독립 설계 검토에서 확인한다.
+
 1단계에서 검증된 통합 기획과 주제 계약을 바탕으로 서로 다른 세 설계안을 비교하고,
 독립 선택자가 고른 하나만 레이아웃·Class·비동기 설계로 구체화한다. 실제 구현은 수행하지 않고, 독립 설계 PASS 뒤에 필요한 환경만 준비한다.
 

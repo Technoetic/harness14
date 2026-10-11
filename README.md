@@ -6,7 +6,7 @@
 
 ### 한 줄 요청 → 기획부터 14 step 자율주행 → 인터랙티브 웹 튜토리얼 1편
 
-최신 릴리스: **[v4.2.1](https://github.com/Technoetic/harness14/releases/tag/v4.2.1)**. 새 실행은 기본14단계와 Tower 기반 조건 고정·오프라인 비교·민감 본문 없는 이력 추출을 제공합니다. 실제 검증 범위와 결과는 [릴리스 안내](docs/releases/v4.2.1.md)와 [검증 JSON](https://github.com/Technoetic/harness14/releases/download/v4.2.1/verification.json)에서 확인합니다.
+최신 릴리스: **[v4.3.0](https://github.com/Technoetic/harness14/releases/tag/v4.3.0)**. 기본14단계에 검토한 요구 목록의 최종 증거 연결, 설치 지시문의 크기·참조 검사, 수정 전후 코드 진단 비교를 추가합니다. Tower 기반 조건 고정·오프라인 비교·민감 본문 없는 이력 추출도 제공합니다. 실제 검증 범위와 결과는 [릴리스 안내](docs/releases/v4.3.0.md)와 [검증 JSON](https://github.com/Technoetic/harness14/releases/download/v4.3.0/verification.json)에서 확인합니다.
 
 **`/harness14:webapp 논문 트렌드 분석 대시보드`** 한 줄을 던지면 요구사항 기획부터 14단계 완료나 명명된 멈춤 전까지 이어가는 결정론적 절차가 가동된다.<br/>
 모델을 똑똑하게 만드는 대신 **모델이 놓을 트랙을 좁힌다**.
@@ -959,7 +959,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tests/security-regression.ps
 | 출처 | 무엇을 빌렸나 |
 |:---|:---|
 | [**Technoetic/claude-code-commands**](https://github.com/Technoetic/claude-code-commands) | **자매 레포** — harness14의 9회차 audit 패턴이 원래 어디서 왔는지 보여주는 1년치 슬래시 명령 20종 컬렉션 |
-| [MoAI-ADK — 현재 공식 저장소](https://github.com/modu-ai/moai-adk) | 당시 MoAI-ADK 설계의 @MX 4종 태그 시스템 · TRUST 5 게이트 · EARS SPEC 형식을 참고. 링크는 현재 공개된 프로젝트 주소 |
+| [MoAI-ADK — 현재 공식 저장소](https://github.com/modu-ai/moai-adk) | @MX 4종 태그·TRUST 5·EARS 형식과, v4.3.0의 [요구 연결](docs/requirement-coverage.md)·[지시문 크기](docs/instruction-budget.md)·[진단 비교](docs/diagnostic-delta.md)의 설계 출처. 아래에 현재 코드 근거와 자체 보강 범위를 명시 |
 | [superpowers](https://github.com/obra/superpowers) | brainstorming · TDD · debugging 스킬 구조와 개발 절차를 참고. 적용 범위·승인은 호스트별 규약을 따름 |
 | [Claude Code 공식 hooks](https://docs.claude.com/en/docs/claude-code/hooks) | `{"decision":"block"}` 자동 재개 메커니즘 · PreToolUse `permissionDecision:"allow"` |
 | [Jev / TypeSafe AI — 공식 API](https://docs.typesafe.ai/api) | **실제 연동 서비스** — Noul·Choice·Score 직접 질문과 새14·기존36의 5개/legacy50의 7개 선택형 의미 판단. 생성·도구 실행·필수 검증은 호스트가 담당 ([직접 질문](docs/jev-first.md) · [단계별 검토](docs/jev-checkpoints.md)) |
@@ -970,6 +970,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tests/security-regression.ps
 | Obsidian vault | 6개 핵심 철학 · `_규칙/HARNESS-규칙.md` · `_규칙/NEW-WORK-규칙.md` |
 
 ### 논문·경험 기억·실행 비교
+
+v4.3.0의 추가 참고 코드는 MoAI commit `2aab5f797b75983e132af451da68f69e3426557b`의 [CoverageRule](https://github.com/modu-ai/moai-adk/blob/2aab5f797b75983e132af451da68f69e3426557b/internal/spec/lint.go), [배포 지시문 예산](https://github.com/modu-ai/moai-adk/blob/2aab5f797b75983e132af451da68f69e3426557b/internal/template/always_loaded_budget_test.go), [진단 회귀 검사](https://github.com/modu-ai/moai-adk/blob/2aab5f797b75983e132af451da68f69e3426557b/internal/lsp/hook/gate.go)입니다. 원 구현은 요구 누락을 경고하고, 진단 개수 차이를 비교하며, 지시문 총량 상한은 규칙 소계에 적용합니다. Harness14는 검토한 목록의 불변 hash와 최종 증거 연결, 개별 진단 식별자 비교, 자체 배포 파일·전달 범위의 정적 검사를 독립적으로 구현했습니다. MoAI의 Go 코드·의존성·숫자 상수를 복사하지 않았으며 비용이나 모델 성능 향상을 측정했다는 뜻은 아닙니다.
 
 아래는 실제 설계·구현 문서에 명시된 참고 출처와 흡수한 범위입니다. 논문의 전체 알고리즘이나 원 프로젝트의 실행 환경을 이식한 것은 아닙니다. 논문 벤치마크 성능을 재현했다는 주장도 하지 않습니다.
 

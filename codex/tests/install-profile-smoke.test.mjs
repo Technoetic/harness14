@@ -52,7 +52,7 @@ test('isolated packaged preflight validates all four definitions and refuses mis
   const positive = smoke();
   assert.equal(positive.exit, 0, JSON.stringify(positive.report));
   assert.equal(positive.report.manifest.name, 'harness14');
-  assert.equal(positive.report.manifest.version, '4.2.1');
+  assert.equal(positive.report.manifest.version, '4.3.0');
   assert.equal(positive.report.codex_version, 'codex-cli 0.150.1');
   assert.equal(positive.report.step_count, 14);
   assert.deepEqual(positive.report.workflow_profiles, { 'legacy-50-v1': 50, 'research-free-36-v1': 36, 'planning-first-20-v1': 20, 'planning-first-14-v1': 14 });

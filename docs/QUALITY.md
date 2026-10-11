@@ -8,9 +8,12 @@ Fresh planning-first14 quality gates are 4/8/14, with prefinal inspection after 
 
 Create `harness50.quality.json` in the generated project. Each command is an executable/argument array, run without shell expansion from the project root. Configure already installed tools. On Windows use Node entry points instead of `.cmd` wrappers.
 
+New workflow guidance uses configuration schema 2. First freeze the reviewed requirement inventory through [requirement coverage](requirement-coverage.md), then copy its returned hash into `requirements.inventory_sha256` below; the all-`a` hash is a placeholder. Intermediate gates validate this frozen binding. Both hosts' final completion additionally require current independent final QA evidence for every mapped check. Historical schema-1 configurations retain their previous semantics and cannot claim this requirement coverage.
+
 ```json
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "requirements": { "inventory_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
   "checks": {
     "test": { "command": ["node", "node_modules/c8/bin/c8.js", "--reporter=json-summary", "node", "--test", "tests/app.test.mjs"] },
     "lint": { "command": ["node", "node_modules/@biomejs/biome/bin/biome", "check", "src"] },
@@ -128,6 +131,18 @@ The report does not run checks, discover product-specific requirements, change w
 state or replace measured quality/browser evidence. Fresh Step 14 enforces the six final
 regression categories and their final HTML binding. Failed, missing and
 unexecuted required checks remain incomplete even when a retry limit is reached.
+
+Schema-2 requirement coverage extends this declared check inventory with a reviewed,
+immutable requirement-to-acceptance-to-check mapping. Final QA includes the six
+regression categories and every mapped product check. Coverage inspection reuses
+current QA evidence and rejects omissions, changed evidence, inventory mismatch
+and incompatible workflow generations. It establishes completeness of the reviewed
+list; it cannot discover unstated intent or authenticate an agent's observation.
+
+Use [diagnostic comparison](diagnostic-delta.md) to distinguish introduced, resolved
+and retained code findings during repairs. Both snapshots identify the producing
+tool/version/configuration and exact selected source bytes. This is advisory triage;
+the existing four quality commands and minimum coverage retain their authority.
 
 ## Jev-first typed judgments
 

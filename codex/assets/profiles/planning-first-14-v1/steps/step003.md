@@ -7,6 +7,8 @@ phase: implementation
 
 ## 목표
 
+플러그인 `docs/diagnostic-delta.md`를 따라 사용 가능한 코드 진단 도구의 실제 출력을 정규화하고 수정 전 baseline을 capture한다. 수정 뒤 같은 도구·설정·선택 파일 범위의 compare 결과에서 새 오류를 우선 확인한다. 도구 실행은 호스트가 수행하며 비교 결과가 품질 PASS나 자동 되돌리기를 허가하지 않는다.
+
 불변 주제 계약과 독립 선택된 통합 설계 하나를 실제 application으로 구현한다. 설계
 대안을 다시 열지 않고, 파일 소유권과 incremental test 증거로 구현 범위를 추적한다.
 

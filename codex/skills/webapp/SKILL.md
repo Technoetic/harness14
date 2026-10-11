@@ -29,6 +29,9 @@ Resolve these installed resources relative to this SKILL.md, not from the curren
 - Verified experience memory CLI: `../../../scripts/workflow-memory.mjs`
 - Selected task context CLI: `../../../scripts/task-context.mjs`
 - Memory requests and declaration schemas: `../../../docs/experience-memory.md`
+- Frozen requirement coverage: `../../../docs/requirement-coverage.md`
+- Shipped instruction size and delivery registry: `../../../docs/instruction-budget.md`
+- Advisory diagnostic comparison: `../../../docs/diagnostic-delta.md`
 - Shared Jev checkpoint helper: `../../../scripts/jev-judge.mjs`
 - Jev input and authorization contract: `../../../docs/jev-checkpoints.md`
 - Direct Jev-first helper: `../../../scripts/jev-ask.mjs`
