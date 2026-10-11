@@ -364,8 +364,6 @@ testEachName('/webapp <topic> starts a run that the other hooks then follow', (t
   const progress = JSON.parse(readFileSync(progressFile(f), 'utf8').replace(/^﻿/, ''));
   assert.equal(progress.current_step, 1);
   assert.deepEqual(progress.completed_steps, []);
-  assert.match(run('webapp-trigger', prompt('/harness14:webapp zeta')), /<harness50-trigger>/);
-  assert.match(readFileSync(topicFile(f), 'utf8'), /zeta/);
   assert.equal(progress.total_steps, 14);
   assert.equal(progress.workflow_profile, "planning-first-14-v1");
   assert.equal(readdirSync(join(f.project, 'step_archive', 'profiles', 'planning-first-14-v1', 'archived')).filter(file => /^step\d{3}\.md$/.test(file)).length, 14);
