@@ -35,14 +35,14 @@ export async function handleSessionStart(_event, { workspaceRoot, eventNow }) {
     } catch (error) {
       if (error?.code === "HOOK_WORKSPACE_UNSAFE") throw error;
       return contextOutput(
-        "Harness20 state is unreadable. Run $harness20-status, then repair or reset the Codex workflow."
+        "Harness14 state is unreadable. Run $harness14-status, then repair or reset the Codex workflow."
       );
     }
     if (state === null || state.status === "completed") return {};
 
     const step = String(state.current_step).padStart(3, "0");
     const context = [
-      `Harness20: ${state.status}, ${state.completed_steps.length}/${state.total_steps} complete.`,
+      `Harness14: ${state.status}, ${state.completed_steps.length}/${state.total_steps} complete.`,
       `Topic: ${state.topic_path}.`,
       `Next: Step ${step}.`,
       "Continue with $webapp resume."

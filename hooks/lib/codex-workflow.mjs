@@ -22,7 +22,7 @@ export const STATUSES = Object.freeze(['running', 'paused', 'blocked', 'complete
 export const MAX_STATE_BYTES = 64 * 1024;
 // Codex uses randomUUID(). The narrow pattern also keeps untrusted text out of model context.
 const WORKFLOW_ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/;
-const MANAGER = "the harness20 plugin's codex/scripts/harness-state.mjs";
+const MANAGER = "the harness14 plugin's codex/scripts/harness-state.mjs";
 
 export const WARNING_LINE = '[HARNESS] WARNING: step_archive/.harness50-codex/state.json exists but is unreadable or incomplete - ' +
   'Claude hooks will not create progress.json or block Stop here. ' +

@@ -61,7 +61,7 @@ if (Test-Path -LiteralPath $codexState) {
             if ($codexOut.Count -gt 0) { $codexLine = [string]$codexOut[0] }
         } catch {}
     }
-    if (-not $codexLine) { $codexLine = "[HARNESS] WARNING: step_archive/.harness50-codex/state.json exists but is unreadable or incomplete - Claude hooks will not create progress.json or block Stop here. Inspect it with the harness20 plugin's codex/scripts/harness-state.mjs show and ask the user before repairing or resetting it." }
+    if (-not $codexLine) { $codexLine = "[HARNESS] WARNING: step_archive/.harness50-codex/state.json exists but is unreadable or incomplete - Claude hooks will not create progress.json or block Stop here. Inspect it with the harness14 plugin's codex/scripts/harness-state.mjs show and ask the user before repairing or resetting it." }
     Write-Host $codexLine
     exit 0
 }

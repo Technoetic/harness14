@@ -1,6 +1,6 @@
 ﻿# webapp-trigger.ps1 — UserPromptSubmit hook
 # /webapp 명시 명령만 발급, 완료 기록이 있는 progress는 덮어쓰지 않음.
-# 첫 줄이 `/webapp <주제>` 또는 `/harness20:webapp <주제>`인 prompt에서만 (기존 harness50 namespace 호환):
+# 첫 줄이 `/webapp <주제>` 또는 `/harness14:webapp <주제>`인 prompt에서만 (기존 harness50 namespace 호환):
 #   1) step_archive/ 부트스트랩 (없으면 생성, step001~050 복사)
 #   2) TOPIC/TOPIC.md 작성 (사용자 prompt 원문 보존)
 #   3) progress.json 초기화 (current_step=1)
@@ -52,9 +52,9 @@ try { $j = $raw | ConvertFrom-Json } catch { exit 0 }
 $prompt = [string]$j.prompt
 if (-not $prompt) { exit 0 }
 
-# 트리거 — 첫 줄의 명시 명령 `/webapp <주제>` 또는 `/harness20:webapp <주제>`만 (기존 harness50 호환, 대소문자 구분).
+# 트리거 — 첫 줄의 명시 명령 `/webapp <주제>` 또는 `/harness14:webapp <주제>`만 (기존 harness50 호환, 대소문자 구분).
 # 자연어 요청은 자동 시작하지 않는다. lib/harness-activity.mjs의 EXPLICIT_WEBAPP와 같은 규칙.
-if (-not ($prompt -cmatch '^[ \t]*/(harness(20|36|50):)?webapp[ \t]+\S')) { exit 0 }
+if (-not ($prompt -cmatch '^[ \t]*/(harness(14|20|36|50):)?webapp[ \t]+\S')) { exit 0 }
 
 Write-Log "TRIGGER matched. prompt head: $($prompt.Substring(0,[Math]::Min(80,$prompt.Length)))"
 
@@ -70,7 +70,7 @@ if (Test-Path -LiteralPath $codexState) {
       if ($codexOut.Count -gt 0) { $codexLine = [string]$codexOut[0] }
     } catch {}
   }
-  if (-not $codexLine) { $codexLine = "[HARNESS] WARNING: step_archive/.harness50-codex/state.json exists but is unreadable or incomplete - Claude hooks will not create progress.json or block Stop here. Inspect it with the harness20 plugin's codex/scripts/harness-state.mjs show and ask the user before repairing or resetting it." }
+  if (-not $codexLine) { $codexLine = "[HARNESS] WARNING: step_archive/.harness50-codex/state.json exists but is unreadable or incomplete - Claude hooks will not create progress.json or block Stop here. Inspect it with the harness14 plugin's codex/scripts/harness-state.mjs show and ask the user before repairing or resetting it." }
   Write-Output "[HARNESS] webapp trigger skipped: a Codex workflow owns this workspace, so step_archive/TOPIC/TOPIC.md and progress.json were left unchanged. Resume that workflow, or use a separate workspace for a different topic."
   Write-Output $codexLine
   exit 0

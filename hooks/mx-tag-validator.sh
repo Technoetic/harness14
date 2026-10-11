@@ -38,7 +38,7 @@ case "$THRESHOLD" in ''|*[!0-9]*) exit 0 ;; esac
 [ "$CUR" -lt "$THRESHOLD" ] && exit 0
 
 case "$FP" in
-  */step_archive/*|*/.claude/*|*/node_modules/*|*/.git/*|*/plugins/harness20/*|*/plugins/harness36/*|*/plugins/harness50/*) exit 0 ;;
+  */step_archive/*|*/.claude/*|*/node_modules/*|*/.git/*|*/plugins/harness14/*|*/plugins/harness20/*|*/plugins/harness36/*|*/plugins/harness50/*) exit 0 ;;
 esac
 [ -f "$FP" ] || exit 0
 

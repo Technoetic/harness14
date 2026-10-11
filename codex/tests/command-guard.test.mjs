@@ -121,8 +121,9 @@ test('escaped quotes, a bare privilege shell and persistence files are caught', 
   }
 });
 
-test('harness20 and legacy harness36 and harness50 installed hooks retain persistence-write protection', () => {
-  for (const target of ['/cache/harness20/4.0.0/hooks/auto-approve.ps1', '/plugins/harness20/.claude-plugin/plugin.json',
+test('harness14 and legacy harness20, harness36 and harness50 installed hooks retain persistence-write protection', () => {
+  for (const target of ['/cache/harness14/4.2.1/hooks/auto-approve.ps1', '/plugins/harness14/.claude-plugin/plugin.json',
+    'C:\\cache\\HARNESS14\\4.2.1\\hooks\\auto-approve.ps1', '/cache/harness20/4.0.0/hooks/auto-approve.ps1', '/plugins/harness20/.claude-plugin/plugin.json',
     'C:\\cache\\HARNESS20\\4.0.0\\hooks\\auto-approve.ps1', '/cache/harness36/0.0.0-test/hooks/auto-approve.ps1', '/plugins/harness36/.claude-plugin/plugin.json',
     'C:\\cache\\HARNESS36\\0.0.0-test\\hooks\\auto-approve.ps1', '/cache/harness50/2.13.0/hooks/auto-approve.ps1']) {
     assert.deepEqual(inspectCommand(`echo example > ${target}`), { level: 'block', rule: 'protected-path' }, target);
@@ -130,6 +131,7 @@ test('harness20 and legacy harness36 and harness50 installed hooks retain persis
   }
   assert.equal(inspectCommand('echo example > src/harness36-notes.md').level, 'pass');
   assert.equal(inspectCommand('echo example > src/harness20-notes.md').level, 'pass');
+  assert.equal(inspectCommand('echo example > src/harness14-notes.md').level, 'pass');
 });
 
 test('helpers: segments, commandOf, dangerousTarget and secretPath', () => {

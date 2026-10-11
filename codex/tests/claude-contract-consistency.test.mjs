@@ -198,12 +198,12 @@ function markdownSection(document, heading, level = 2) {
 // workspaces, so the README must not say they run in every folder of the install scope.
 const INSTALL_REQUIRED = [
   '--scope local',
-  '"harness20@harness20": false',
-  'claude plugin disable harness20@harness20',
-  'claude plugin enable harness20@harness20',
-  'claude plugin uninstall harness20@harness20',
-  'claude plugin marketplace remove harness20',
-  '/plugin marketplace add /absolute/path/to/harness20',
+  '"harness14@harness14": false',
+  'claude plugin disable harness14@harness14',
+  'claude plugin enable harness14@harness14',
+  'claude plugin uninstall harness14@harness14',
+  'claude plugin marketplace remove harness14',
+  '/plugin marketplace add /absolute/path/to/harness14',
   'python3',
   'powershell.exe',
   'claude --plugin-dir'
@@ -228,7 +228,7 @@ function installErrors(readme) {
     if (!new RegExp(`^\\| ${range}(?:\\(기본\\))? \\|`, 'm').test(scope)) errors.push(`scope row missing: ${range}`);
   }
   if (!scope.includes('](#-안전-모델-한계-정직성)')) errors.push('the scope warning does not link the safety limits');
-  if (!removal.includes('claude plugin uninstall harness20@harness20')) errors.push('removal section lacks uninstall');
+  if (!removal.includes('claude plugin uninstall harness14@harness14')) errors.push('removal section lacks uninstall');
   const rows = requirements.split('\n').filter(line => line.startsWith('| '));
   for (const [runtime, pattern] of REQUIREMENT_ROWS) {
     if (!rows.some(row => pattern.test(row))) errors.push(`requirements row missing: ${runtime}`);
@@ -266,7 +266,7 @@ test('S8 codex/README explains the migrated source-command skills and how to rem
   assert.ok(host.includes('`source-command-<이름>`'), 'Host commands does not name the migrated skills');
   assert.ok(host.includes('`$webapp pause`'), 'Host commands does not point to $webapp pause');
   assert.ok(install.includes('\n### Remove / 제거\n'), 'Codex installation has no removal subsection');
-  assert.ok(install.includes('codex plugin remove harness20@harness20'), 'Codex installation lacks the remove command');
+  assert.ok(install.includes('codex plugin remove harness14@harness14'), 'Codex installation lacks the remove command');
   assert.ok(install.includes('`$webapp pause`'), 'removal does not say to pause a running workflow first');
   assert.ok(trust.includes('`source-command-*`'), 'the trust gate does not keep migrated skills out of the three skills');
 });

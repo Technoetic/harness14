@@ -1,9 +1,9 @@
 ---
-name: harness20-status
-description: Use when a user invokes $harness20-status or asks to inspect a Harness20 Codex workflow without changing it.
+name: harness14-status
+description: Use when a user invokes $harness14-status or asks to inspect a Harness14 Codex workflow without changing it.
 ---
 
-# Harness20 Status
+# Harness14 Status
 
 Status is a single observation. It never repairs, imports, resumes, resets, or advances work.
 
@@ -16,7 +16,7 @@ keep their selected 20/36/50 denominators. Never infer them from a step number.
 
 ## Status operation
 
-For `$harness20-status`, Call only `show` through the state manager. Treat the result as strictly read-only and report it without a follow-up state operation.
+For `$harness14-status`, Call only `show` through the state manager. Treat the result as strictly read-only and report it without a follow-up state operation.
 
 ## Report
 

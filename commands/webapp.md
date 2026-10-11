@@ -3,7 +3,7 @@ description: 웹앱 인터랙티브 튜토리얼 1회 입력 → 기획부터 �
 argument-hint: <주제 한 줄>
 ---
 
-# /webapp — harness20 자율주행 시작
+# /webapp — harness14 자율주행 시작
 
 **입력**: `$ARGUMENTS` (예: `다익스트라 최단경로 알고리즘`, `OAuth 2.0 인증 흐름`, `B-tree 인덱스`)
 
@@ -16,7 +16,7 @@ argument-hint: <주제 한 줄>
 **Codex 작업 공간 분기:** `step_archive/.harness50-codex/state.json`이 있으면 Codex 상태
 관리자가 이 작업 공간을 소유한다. 아래 절차를 수행하지 않는다. TOPIC.md·progress.json을
 만들거나 덮어쓰지 않고, step001로 돌아가지도 않는다. SessionStart나 webapp-trigger가 알린
-Codex 단계부터 harness20 플러그인의 `codex/scripts/harness-state.mjs`(`show` → `resume` →
+Codex 단계부터 harness14 플러그인의 `codex/scripts/harness-state.mjs`(`show` → `resume` →
 `begin` → `complete`)와 `codex/skills/webapp/SKILL.md` 절차로 이어간다. 다른 주제는 별도
 작업 공간에서 시작한다. 상태 파일을 읽을 수 없으면 `show` 결과만 보고하고, 복구나 리셋은
 사용자가 결정한다.
@@ -24,7 +24,7 @@ Codex 단계부터 harness20 플러그인의 `codex/scripts/harness-state.mjs`(`
 ## 즉시 실행 절차 (사용자 확인 없이)
 
 1. **harness-rules skill 로드** — 본 세션의 절대 헌법.
-   `Skill` 도구로 `harness20:harness-rules` 호출.
+   `Skill` 도구로 `harness14:harness-rules` 호출.
 
 2. **선택된 실행 확인** — 명시적인 `/webapp <주제>`의 `webapp-trigger`가 새 실행에 schema2·`planning-first-14-v1`·total14을 만들고 원문 prompt를 TOPIC에 보존한다. `webapp trigger skipped`가 있으면 TOPIC·progress를 덮어쓰지 않고 안내만 전한다. 훅 실패로 진행 기록이 없으면 필수 도구 실패로 보고하고 가짜 progress를 직접 만들지 않는다.
 

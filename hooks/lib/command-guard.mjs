@@ -128,7 +128,7 @@ export const secretPath = arg => HARD_SECRET.test(arg) || (!ENV_TEMPLATE.test(ar
 const PERSISTENT_TARGET = new RegExp([
   String.raw`(?:^|[\\/])\.git[\\/](?:hooks(?:[\\/]|$)|config$)`,
   String.raw`(?:^|[\\/])\.claude[\\/]settings(?:\.local)?\.json$`,
-  String.raw`(?:^|[\\/])harness(?:20|36|50)(?:[\\/][^\\/]+)?[\\/](?:hooks|\.claude-plugin)(?:[\\/]|$)`,
+  String.raw`(?:^|[\\/])harness(?:14|20|36|50)(?:[\\/][^\\/]+)?[\\/](?:hooks|\.claude-plugin)(?:[\\/]|$)`,
   String.raw`(?:^|[\\/])\.(?:bashrc|bash_profile|zshrc|zprofile|profile|zshenv)$`,
   String.raw`(?:^|[\\/])\.ssh[\\/]authorized_keys2?$`,
   String.raw`(?:^|[\\/])\.config[\\/](?:systemd|autostart)(?:[\\/]|$)`,

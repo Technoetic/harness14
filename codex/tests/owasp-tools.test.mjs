@@ -26,9 +26,9 @@ function cli(plugin, module, mode, raw, root) {
 const fetchEvent = url => ({ tool_name: 'WebFetch', tool_input: { url } });
 const writeEvent = (file_path, content = 'ordinary text') => ({ tool_name: 'Write', tool_input: { file_path, content } });
 
-test('harness20 installed hook and manifest writes stay protected in both adapters with legacy cache aliases', async t => {
+test('harness14 installed hook and manifest writes stay protected in both adapters with legacy cache aliases', async t => {
   const { root, plugin } = fixture(t);
-  for (const name of ['harness20', 'HARNESS20', 'harness36', 'harness50']) {
+  for (const name of ['harness14', 'HARNESS14', 'harness20', 'HARNESS20', 'harness36', 'harness50']) {
     for (const file of ['hooks/guard.mjs', '.claude-plugin/plugin.json', '.codex-plugin/plugin.json']) {
       const target = `cache/${name}/4.0.0/${file}`;
       const event = writeEvent(target);

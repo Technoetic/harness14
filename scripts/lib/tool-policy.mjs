@@ -84,7 +84,7 @@ function configuredBudgetPath(value) {
 export function isProtectedWritePath(value) {
   const p = normalized(value);
   return isSensitiveReadPath(value) || CONTROL_FILES.test(p) || CONTROL_WRITE.test(p) || MEASURED_OUTPUT.test(p) || EXECUTION.test(p) || /(^|\/)step_archive\/?$/.test(p) ||
-    /(^|\/)harness(?:20|36|50)(?:\/[^/]+)?\/(?:hooks|\.claude-plugin|\.codex-plugin)(?:\/|$)/.test(p) ||
+    /(^|\/)harness(?:14|20|36|50)(?:\/[^/]+)?\/(?:hooks|\.claude-plugin|\.codex-plugin)(?:\/|$)/.test(p) ||
     /(^|\/)(?:\.bashrc|\.bash_profile|\.zshrc|\.zprofile|\.profile|\.zshenv)$|(^|\/)\.config\/(?:systemd|autostart)(?:\/|$)/.test(p) ||
     /^\/(?:etc|var|boot)(?:\/|$)|\/(?:system32|windows|program files)(?:\/|$)/.test(p);
 }
