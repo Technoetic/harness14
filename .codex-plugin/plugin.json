@@ -1,6 +1,6 @@
 {
   "name": "harness14",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "Run the Harness14 planning-first fourteen-step workflow in Codex with explicit progress receipts, normal permissions and optional offline trials; preserve existing20/36/50 runs.",
   "author": {
     "name": "Technoetic"

@@ -1,0 +1,417 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "codex/skills/webapp/SKILL.md",
+      "surface": "codex-base",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/skills/harness14-status/SKILL.md",
+      "surface": "codex-controls",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/skills/harness14-reset/SKILL.md",
+      "surface": "codex-controls",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "skills/harness-rules/SKILL.md",
+      "surface": "claude-base",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "skills/evaluator/SKILL.md",
+      "surface": "role-instructions",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "skills/chunk-writer/SKILL.md",
+      "surface": "role-instructions",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "skills/debug-step/SKILL.md",
+      "surface": "role-instructions",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "agents/step-executor.md",
+      "surface": "role-instructions",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "commands/webapp.md",
+      "surface": "claude-commands",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "commands/harness-status.md",
+      "surface": "claude-commands",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "commands/harness-resume.md",
+      "surface": "claude-commands",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "commands/harness-reset.md",
+      "surface": "claude-commands",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "commands/harness-pause.md",
+      "surface": "claude-commands",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/BROWSER-TOOLS.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/DESIGN-CONTRACT.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/FINAL-SUMMARY.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/QA-REPORTS.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/QUALITY.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/RETIRED-VALIDATORS.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/ROUTING.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/SECURITY.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/experience-memory.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/jev-checkpoints.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/jev-first.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/jev-first-contract.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/instruction-budget.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/requirement-coverage.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "docs/diagnostic-delta.md",
+      "surface": "companion-documents",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step001.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step001.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step002.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step002.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step003.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step003.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step004.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step004.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step005.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step005.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step006.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step006.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step007.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step007.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step008.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step008.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step009.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step009.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step010.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step010.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step011.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step011.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step012.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step012.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step013.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step013.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "codex/assets/profiles/planning-first-14-v1/steps/step014.md",
+      "surface": "codex-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "path": "assets/profiles/planning-first-14-v1/steps/step014.md",
+      "surface": "claude-selected-steps",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "codex-base",
+      "delivery": "base",
+      "max_bytes": 65536,
+      "max_unicode_characters": 65536
+    },
+    {
+      "id": "codex-controls",
+      "delivery": "control",
+      "max_bytes": 16384,
+      "max_unicode_characters": 16384
+    },
+    {
+      "id": "codex-selected-steps",
+      "delivery": "selected-step",
+      "max_bytes": 196608,
+      "max_unicode_characters": 196608
+    },
+    {
+      "id": "claude-base",
+      "delivery": "base",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "id": "claude-commands",
+      "delivery": "command",
+      "max_bytes": 32768,
+      "max_unicode_characters": 32768
+    },
+    {
+      "id": "claude-selected-steps",
+      "delivery": "selected-step",
+      "max_bytes": 196608,
+      "max_unicode_characters": 196608
+    },
+    {
+      "id": "role-instructions",
+      "delivery": "role",
+      "max_bytes": 65536,
+      "max_unicode_characters": 65536
+    },
+    {
+      "id": "companion-documents",
+      "delivery": "on-demand",
+      "max_bytes": 327680,
+      "max_unicode_characters": 327680
+    }
+  ],
+  "required_references": [
+    {
+      "from": "codex/skills/webapp/SKILL.md",
+      "to": "docs/instruction-budget.md"
+    },
+    {
+      "from": "codex/skills/webapp/SKILL.md",
+      "to": "docs/requirement-coverage.md"
+    },
+    {
+      "from": "codex/skills/webapp/SKILL.md",
+      "to": "docs/diagnostic-delta.md"
+    },
+    {
+      "from": "skills/harness-rules/SKILL.md",
+      "to": "docs/instruction-budget.md"
+    },
+    {
+      "from": "skills/harness-rules/SKILL.md",
+      "to": "docs/requirement-coverage.md"
+    },
+    {
+      "from": "skills/harness-rules/SKILL.md",
+      "to": "docs/diagnostic-delta.md"
+    }
+  ]
+}

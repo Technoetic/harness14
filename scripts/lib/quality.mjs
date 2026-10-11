@@ -5,6 +5,7 @@ import { physicalWorkspace, safePath, readSafe, writeSafe, sourceFingerprint, sh
 import { workflowContext, recheckWorkflowContext } from './workflow-context.mjs';
 import { parseStrictJson } from './strict-json.mjs';
 import { unsafeJevText } from './sensitive-data.mjs';
+import { inspectRequirementInventory, inspectRequirementCoverage } from './requirement-coverage.mjs';
 
 export const REPORT_PATH = 'step_archive/outputs/quality-gate.json';
 const CONFIG_PATH = 'harness50.quality.json';
@@ -22,7 +23,7 @@ export function commandEnvironment(parent = process.env) {
 
 function parseConfig(bytes) {
   const value = parseStrictJson(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
-  if (value?.schema_version !== 1 || !value.checks || CHECKS.some(name => {
+  if (![1, 2].includes(value?.schema_version) || !value.checks || CHECKS.some(name => {
     const command = value.checks[name]?.command;
     return !Array.isArray(command) || command.length === 0 || command.length > 64 || command.some(arg => typeof arg !== 'string' || !arg || arg.includes('\0') || arg.length > 8192);
   }) || typeof value.coverage?.path !== 'string' || !value.coverage.path.startsWith('coverage/') || !Number.isFinite(value.coverage.minimum) || value.coverage.minimum < 85 || value.coverage.minimum > 100) {
@@ -31,7 +32,46 @@ function parseConfig(bytes) {
   for (const name of CHECKS) {
     if (unsafeJevText(value.checks[name].command.join(' '))) throw new Error('Quality command contains sensitive or ambiguous argument text; use host-managed credentials');
   }
+  if (value.schema_version === 2) {
+    const requirements = value.requirements;
+    if (!requirements || typeof requirements !== 'object' || Array.isArray(requirements)
+        || Object.keys(requirements).length !== 1
+        || !/^[a-f0-9]{64}$/.test(requirements.inventory_sha256 ?? '')) {
+      throw new Error('Quality schema 2 requires the frozen requirement inventory SHA256');
+    }
+  } else if (Object.hasOwn(value, 'requirements')) {
+    throw new Error('Requirement inventory binding requires quality schema 2');
+  }
   return value;
+}
+
+async function configuredInventory(root, config, options = {}) {
+  if (config.schema_version === 1) return null;
+  const inventory = await inspectRequirementInventory(root, {
+    ...options, inventorySha256: config.requirements.inventory_sha256
+  });
+  if (inventory.verdict !== 'PASS') throw new Error('Frozen requirement inventory is missing, changed or invalid');
+  return inventory;
+}
+
+// Both host completion paths use this read-only final gate. A schema-1 project
+// retains its historical meaning; schema 2 cannot replace omitted QA with PASS.
+export async function inspectRequirementCompletion(workspaceRoot, options = {}) {
+  try {
+    const root = await physicalWorkspace(workspaceRoot);
+    const context = await workflowContext(root, options);
+    const configBytes = await readSafe(root, CONFIG_PATH, 65536);
+    const config = parseConfig(configBytes);
+    if (config.schema_version === 1) return { status: 'not_configured', verdict: 'NOT_CONFIGURED' };
+    const result = await inspectRequirementCoverage(root, {
+      ...options, inventorySha256: config.requirements.inventory_sha256
+    });
+    if (sha256(await readSafe(root, CONFIG_PATH, 65536)) !== sha256(configBytes)) {
+      throw new Error('Requirement quality configuration changed during inspection');
+    }
+    await recheckWorkflowContext(root, context);
+    return result;
+  } catch { return { status: 'invalid', verdict: 'INCOMPLETE' }; }
 }
 
 function runCommand(command, cwd, timeoutMs) {
@@ -102,6 +142,8 @@ export async function runQualityGate(workspaceRoot, { timeoutMs = MAX_TIMEOUT, t
     const configBytes = await readSafe(root, CONFIG_PATH, 65536);
     const config = parseConfig(configBytes);
     report.config_sha256 = sha256(configBytes);
+    const inventory = await configuredInventory(root, config);
+    if (inventory) report.requirements_inventory_sha256 = inventory.inventory_sha256;
     if (approvedConfigSha256 !== undefined && (!/^[a-f0-9]{64}$/.test(approvedConfigSha256) || approvedConfigSha256 !== report.config_sha256)) throw new Error('Approved quality config hash does not match the current config; execution stopped');
     if (approvedConfigSha256 !== undefined) report.approved_config_sha256 = approvedConfigSha256;
     const before = await sourceFingerprint(root);
@@ -111,6 +153,7 @@ export async function runQualityGate(workspaceRoot, { timeoutMs = MAX_TIMEOUT, t
       if (sha256(await readSafe(root, CONFIG_PATH, 65536)) !== report.config_sha256) throw new Error('Quality config changed during checks; execution stopped');
       if ((await sourceFingerprint(root)).sha256 !== before.sha256) throw new Error('Source changed during quality checks; execution stopped');
       await recheckWorkflowContext(root, context);
+      await configuredInventory(root, config);
       if (Date.now() >= deadline) throw new Error('Total quality execution budget exceeded');
     };
     // A previous run's report cannot establish what this test invocation covered.
@@ -144,6 +187,10 @@ export async function inspectQualityReport(workspaceRoot, options = {}) {
     const configBytes = await readSafe(root, CONFIG_PATH, 65536);
     const config = parseConfig(configBytes);
     if ((report.schema_version !== (context.generation ? 2 : 1) || (context.generation && (report.workflow_profile !== context.profile.id || report.workflow_generation !== context.generation))) || report.verdict !== 'PASS' || report.error || report.config_sha256 !== sha256(configBytes) || !Number.isFinite(Date.parse(report.generated_at)) || CHECKS.some(name => !commandPass(report.checks?.[name]) || JSON.stringify(report.checks[name].command) !== JSON.stringify(config.checks[name].command))) throw new Error('Quality report does not contain four successful configured checks');
+    const inventory = await configuredInventory(root, config, options);
+    if (inventory && report.requirements_inventory_sha256 !== inventory.inventory_sha256) {
+      throw new Error('Quality report does not bind the frozen requirement inventory');
+    }
     const current = await sourceFingerprint(root);
     if (current.sha256 !== report.source?.sha256 || current.files !== report.source?.files) throw new Error('Quality report is stale: source fingerprint changed');
     const coverage = coverageResult(await readSafe(root, config.coverage.path), config.coverage.minimum);

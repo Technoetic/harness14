@@ -36,6 +36,8 @@ jobs:
         run: npm --ignore-scripts run verify:security
       - name: Install pinned validation dependencies
         run: npm ci --ignore-scripts
+      - name: Validate shipped instruction sizes and required companion references
+        run: npm --ignore-scripts run verify:instructions
       # Pays the first-start cost of Windows PowerShell 5.1 outside the test spawn limits. The log
       # separates the first-start and Defender hypotheses (tag run 36205595180: the first
       # powershell.exe of several test files took more than 60 s).

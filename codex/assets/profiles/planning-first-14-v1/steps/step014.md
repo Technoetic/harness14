@@ -8,6 +8,8 @@ phase: e2e
 
 ## 목표
 
+품질 설정 schema2의 frozen 요구 목록에 등록된 모든 검사 ID를 이 단계의 독립 QA snapshot/checks/outcomes에 포함한다. 기존 여섯 회귀 검사와 함께 현재 증거로 검증한다. 누락·미실행·변경된 증거는 `docs/requirement-coverage.md`의 공용 검사와 상태 관리자가 완료를 거절한다.
+
 모든 도달 가능 application 상태에서 browser 오류 표면을 검사하고 0개임을 독립적으로
 확인한다. 그 뒤 current build와 최종 dist를 다시 검증하고 세 번째 quality milestone과
 내구성 있는 완료 영수증의 순서를 보장한다.

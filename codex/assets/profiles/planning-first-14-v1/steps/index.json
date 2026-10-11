@@ -84,7 +84,7 @@
       "phase": "planning",
       "source": "assets/profiles/planning-first-14-v1/steps/step002.md",
       "target": "codex/assets/profiles/planning-first-14-v1/steps/step002.md",
-      "source_sha256": "fb19aa6c8834771f49169d478255ae783efa05242a21f70040cc9bcce6d634dd",
+      "source_sha256": "f34e72ae52cb0414314b8c20ff75f238cd3f3ed18f1ade5bf244803f5b4d624b",
       "inputs": [
         "step_archive/TOPIC/TOPIC.md",
         "step_archive/step001_planning_chunk1.md",
@@ -252,7 +252,7 @@
       "phase": "implementation",
       "source": "assets/profiles/planning-first-14-v1/steps/step003.md",
       "target": "codex/assets/profiles/planning-first-14-v1/steps/step003.md",
-      "source_sha256": "8472d20e52c735c96fa9f347063544f3dc8e559383d4368e9d79c0bfc0477af0",
+      "source_sha256": "bf87a563c15335083036c6696fb4cf34f8518d1f7177c6c392c86ad2645bde06",
       "inputs": [
         "step_archive/TOPIC/TOPIC.md",
         "step_archive/outputs/step002_설계선택.md",
@@ -1240,7 +1240,7 @@
       "phase": "e2e",
       "source": "assets/profiles/planning-first-14-v1/steps/step014.md",
       "target": "codex/assets/profiles/planning-first-14-v1/steps/step014.md",
-      "source_sha256": "a94fce42feea526b3d80a2b94283cf9f87d2fdbf448bc248708a65a14d060713",
+      "source_sha256": "7a6537e68b93f5ba5477b1f16208a3e9bb1a49198e0e604ffe1de45c038689c6",
       "inputs": [
         "step_archive/step004_smoke_test.md",
         "dist/index.html",

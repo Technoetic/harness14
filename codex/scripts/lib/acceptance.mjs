@@ -15,7 +15,7 @@ import { parseBackendLock } from "../../../scripts/lib/browser-backend-lock.mjs"
 import { inspectEnvironmentReport } from "../../../scripts/lib/environment-report.mjs";
 import { readBrowserReportBytes } from "../../../scripts/lib/browser-report.mjs";
 import { readRouteManifestBytes, validateRouteManifest } from "../../../scripts/lib/route-contract.mjs";
-import { inspectQualityReport, REPORT_PATH as QUALITY_REPORT_PATH } from "../../../scripts/lib/quality.mjs";
+import { inspectQualityReport, inspectRequirementCompletion, REPORT_PATH as QUALITY_REPORT_PATH } from "../../../scripts/lib/quality.mjs";
 import { inspectFinalRegression } from "../../../scripts/lib/final-regression.mjs";
 
 import { LEGACY_WORKFLOW_PROFILE, getWorkflowProfile, stepPhase } from "../../../scripts/lib/workflow-profiles.mjs";
@@ -604,12 +604,17 @@ async function measuredReports(step, workspaceRoot, afterArtifactOpen, workflowP
     fail("ACCEPTANCE_QUALITY_INCOMPLETE", "current measured quality PASS is required", { reason: quality.error });
   }
   const reports = [{ id: "measured-quality-report", path: QUALITY_REPORT_PATH }];
+  let requirements = null;
   if (step === profile.milestones.final) {
     const final = await inspectFinalRegression(workspaceRoot, workflowProfile);
     if (final.verdict !== "PASS") {
       fail("ACCEPTANCE_FINAL_REGRESSION_INCOMPLETE", "current final regression PASS is required", { reason: final.error });
     }
     reports.push({ id: "final-regression-report", path: final.report_path, digest: final.report_sha256 });
+    requirements = await inspectRequirementCompletion(workspaceRoot, { workflowProfile });
+    if (!["PASS", "NOT_CONFIGURED"].includes(requirements.verdict)) {
+      fail("ACCEPTANCE_REQUIREMENTS_INCOMPLETE", "every frozen requirement needs current final QA evidence");
+    }
   }
   const evidence = [];
   for (const report of reports) {
@@ -627,6 +632,10 @@ async function measuredReports(step, workspaceRoot, afterArtifactOpen, workflowP
     const currentFinal = await inspectFinalRegression(workspaceRoot, workflowProfile);
     if (currentFinal.verdict !== "PASS" || currentFinal.report_sha256 !== reports[1].digest) {
       fail("ACCEPTANCE_FINAL_REGRESSION_INCOMPLETE", "final regression changed during completion");
+    }
+    const currentRequirements = await inspectRequirementCompletion(workspaceRoot, { workflowProfile });
+    if (!["PASS", "NOT_CONFIGURED"].includes(currentRequirements.verdict) || !sameJson(currentRequirements, requirements)) {
+      fail("ACCEPTANCE_REQUIREMENTS_INCOMPLETE", "frozen requirement coverage changed during completion");
     }
   }
   for (const report of reports) await hashStableArtifact(workspaceRoot, report, report.digest);

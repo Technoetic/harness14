@@ -7,6 +7,9 @@ persistence: session
 
 
 <!-- MOAI-ENRICHED v1 -->
+
+품질 설정 schema2의 frozen 요구 목록에 등록된 모든 검사 ID를 이 단계의 독립 QA에 기존 여섯 회귀 검사와 함께 포함한다. `docs/requirement-coverage.md`의 현재 증거 검사가 누락·미실행·오래된 결과를 거절한다. 최종 `quality-gate.mjs --inspect-final`이 이 공용 검사를 포함하며 완료 표시 전에 통과해야 한다.
+
 > **📐 Plan → Run → Sync** (MoAI-ADK 워크플로우)
 > - **Plan**: 본 Step의 SPEC 자동 생성 `step_archive/specs/SPEC-014.md` 를 먼저 읽고 Acceptance 기준을 확정한다.
 > - **Run**: 본문 지침대로 실행. 구현 산출물에는 `@MX:NOTE` 최소 1개 부착 (위험 시 `@MX:WARN` + `@MX:REASON`, 계약 시 `@MX:ANCHOR` + `@MX:REASON`, 미완료 시 `@MX:TODO`). MoAI mx-tag-protocol SoT 준수.

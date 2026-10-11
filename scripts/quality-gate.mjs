@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { runQualityGate, inspectQualityReport, prepareQualityGate } from './lib/quality.mjs';
+import { runQualityGate, inspectQualityReport, prepareQualityGate, inspectRequirementCompletion } from './lib/quality.mjs';
 import { physicalWorkspace, readSafe, writeSafe } from './lib/quality-files.mjs';
 import { inspectBrowserOutput } from './lib/final-output.mjs';
 import { inspectFinalRegression } from './lib/final-regression.mjs';
@@ -9,12 +9,16 @@ import { resolveWorkflowProfile } from './lib/workflow-profiles.mjs';
 
 async function inspectFinalOutput(workspaceRoot) {
   const context = await workflowContext(await physicalWorkspace(workspaceRoot));
-  const [quality, browser, regression] = await Promise.all([
-    inspectQualityReport(workspaceRoot), inspectBrowserOutput(workspaceRoot), inspectFinalRegression(workspaceRoot, context.profile.id)
+  const [quality, browser, regression, requirements] = await Promise.all([
+    inspectQualityReport(workspaceRoot), inspectBrowserOutput(workspaceRoot), inspectFinalRegression(workspaceRoot, context.profile.id),
+    inspectRequirementCompletion(workspaceRoot)
   ]);
-  const passed = quality.verdict === 'PASS' && browser.verdict === 'PASS' && regression.verdict === 'PASS';
+  const required = requirements.verdict !== 'NOT_CONFIGURED';
+  const passed = quality.verdict === 'PASS' && browser.verdict === 'PASS' && regression.verdict === 'PASS'
+    && (!required || requirements.verdict === 'PASS');
   return { verdict: passed ? 'PASS' : 'INCOMPLETE', quality, browser, regression,
-    ...(passed ? {} : { error: `Final evidence incomplete: quality=${quality.verdict}, browser=${browser.verdict}, regression=${regression.verdict}. ${quality.error ?? ''} ${browser.error ?? ''} ${regression.error ?? ''}`.trim() }) };
+    ...(required ? { requirements } : {}),
+    ...(passed ? {} : { error: `Final evidence incomplete: quality=${quality.verdict}, browser=${browser.verdict}, regression=${regression.verdict}${required ? `, requirements=${requirements.verdict}` : ''}. ${quality.error ?? ''} ${browser.error ?? ''} ${regression.error ?? ''}`.trim() }) };
 }
 
 async function main() {
