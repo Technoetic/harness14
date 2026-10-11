@@ -1,6 +1,6 @@
 {
-  "name": "harness20",
-  "version": "4.2.0",
+  "name": "harness14",
+  "version": "4.2.1",
   "description": "Web tutorial generator with a 14-step planning-first workflow for new runs, preserved existing 20/36/50 workflows, and optional offline trials. Windows + macOS/Linux.",
   "author": {
     "name": "Technoetic"

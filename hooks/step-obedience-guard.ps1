@@ -29,7 +29,7 @@ if (Test-Path -LiteralPath (Join-Path (Join-Path $stepArchive ".harness50-codex"
 
 # The commands that control the run itself (/harness-pause, /harness-resume, /harness-status,
 # /harness-reset) get no reminder, paused or not.
-if ([string]$harnessEvent.prompt -cmatch '^\s*/(harness(20|36|50):)?harness-(pause|resume|status|reset)(\s|$)') { exit 0 }
+if ([string]$harnessEvent.prompt -cmatch '^\s*/(harness(14|20|36|50):)?harness-(pause|resume|status|reset)(\s|$)') { exit 0 }
 
 if (-not (Test-Path -LiteralPath $progressFile)) { exit 0 }
 
@@ -69,7 +69,7 @@ if ($isPaused) {
     # An explicit /webapp <topic> is answered by webapp-trigger, which runs for the same prompt (in
     # parallel): it starts a new topic when no step is complete, else says why not. A PAUSED line
     # here would contradict that answer.
-    if ([string]$harnessEvent.prompt -cmatch '^[ \t]*/(harness(20|36|50):)?webapp[ \t]+\S') { exit 0 }
+    if ([string]$harnessEvent.prompt -cmatch '^[ \t]*/(harness(14|20|36|50):)?webapp[ \t]+\S') { exit 0 }
     $pauseTotal = $totalSteps
     $pauseFirst = $nextStep
     $pauseStep = $pauseFirst

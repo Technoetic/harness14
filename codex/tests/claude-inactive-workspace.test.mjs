@@ -364,6 +364,8 @@ testEachName('/webapp <topic> starts a run that the other hooks then follow', (t
   const progress = JSON.parse(readFileSync(progressFile(f), 'utf8').replace(/^﻿/, ''));
   assert.equal(progress.current_step, 1);
   assert.deepEqual(progress.completed_steps, []);
+  assert.match(run('webapp-trigger', prompt('/harness14:webapp zeta')), /<harness50-trigger>/);
+  assert.match(readFileSync(topicFile(f), 'utf8'), /zeta/);
   assert.equal(progress.total_steps, 14);
   assert.equal(progress.workflow_profile, "planning-first-14-v1");
   assert.equal(readdirSync(join(f.project, 'step_archive', 'profiles', 'planning-first-14-v1', 'archived')).filter(file => /^step\d{3}\.md$/.test(file)).length, 14);
@@ -398,6 +400,9 @@ testEachName('/webapp never overwrites a run with completed steps; natural langu
   assert.equal(skipped.length, 1, skipped.join('\n'));
   assert.match(skipped[0], /already records 1\/50 completed steps/);
   assert.deepEqual(bytes(), before);
+  const canonical = run('webapp-trigger', prompt('/harness14:webapp other'));
+  assert.match(canonical, /already records 1\/50 completed steps/);
+  assert.deepEqual(bytes(), before, 'canonical namespace preserves existing workflow bytes');
   const namespaced = run('webapp-trigger', prompt('/harness20:webapp other'));
   assert.match(namespaced, /already records 1\/50 completed steps/);
   assert.deepEqual(bytes(), before, 'new namespace preserves the existing 50-step workflow');
@@ -406,7 +411,7 @@ testEachName('/webapp never overwrites a run with completed steps; natural langu
   assert.deepEqual(bytes(), before);
 });
 
-testEachName('a new /webapp topic replaces one without completed steps, including harness20, harness36 and harness50 namespaces', (t, name) => {
+testEachName('a new /webapp topic replaces one without completed steps, including harness14, harness20, harness36 and harness50 namespaces', (t, name) => {
   const f = setup(t, name);
   const run = hookRunner(f);
   const prompt = text => ({ hook_event_name: 'UserPromptSubmit', prompt: text });
@@ -421,6 +426,8 @@ testEachName('a new /webapp topic replaces one without completed steps, includin
   assert.match(run('webapp-trigger', prompt('/harness20:webapp epsilon')), /<harness50-trigger>/);
   assert.match(readFileSync(topicFile(f), 'utf8'), /epsilon/);
   const progress = JSON.parse(readFileSync(progressFile(f), 'utf8').replace(/^﻿/, ''));
+  assert.match(run('webapp-trigger', prompt('/harness14:webapp zeta')), /<harness50-trigger>/);
+  assert.match(readFileSync(topicFile(f), 'utf8'), /zeta/);
   assert.equal(progress.total_steps, 14);
   assert.equal(progress.workflow_profile, 'planning-first-14-v1');
 });

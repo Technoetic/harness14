@@ -256,13 +256,13 @@ test('shouldRunHook: broken events start no hook; unknown names use the active g
   assert.equal(shouldRunHook('auto-approve', Buffer.from(JSON.stringify({ cwd: active })), { CLAUDE_PROJECT_DIR: '' }, absent), true);
 });
 
-test('harness20 EXPLICIT_WEBAPP accepts only a first-line command with a topic and preserves legacy aliases', () => {
-  for (const prompt of ['/webapp fractions', '  /webapp x', '\t/webapp x', '/harness20:webapp x', '/harness36:webapp x', '/harness50:webapp x', '/webapp x\n더', '/webapp 논문 트렌드']) {
+test('harness14 EXPLICIT_WEBAPP accepts only a first-line command with a topic and preserves legacy aliases', () => {
+  for (const prompt of ['/webapp fractions', '  /webapp x', '\t/webapp x', '/harness14:webapp x', '/harness20:webapp x', '/harness36:webapp x', '/harness50:webapp x', '/webapp x\n더', '/webapp 논문 트렌드']) {
     assert.equal(EXPLICIT_WEBAPP.test(prompt), true, JSON.stringify(prompt));
   }
   for (const prompt of ['/webapp', '/webapp   ', '/webappx y', '/WEBAPP x', 'please /webapp x', '\n/webapp x', '/webapp\nx',
     '웹앱 튜토리얼 만들어줘', '회사 매출 대시보드 만들어줘', '@step_archive/archived/step001.md 절대 복종', 'webapp 생성',
-    '인터렉티브 필수', '/other:webapp x', '/harness20:webapp', '/harness20:webappx y', '/Harness20:webapp x', '/harness200:webapp x', '\n/harness20:webapp x', '/harness36:webapp', '/harness36:webappx y', '/Harness36:webapp x', '/harness360:webapp x', '\n/harness36:webapp x']) {
+    '인터렉티브 필수', '/other:webapp x', '/harness14:webapp', '/harness14:webappx y', '/Harness14:webapp x', '/harness140:webapp x', '\n/harness14:webapp x', '/harness20:webapp', '/harness20:webappx y', '/Harness20:webapp x', '/harness200:webapp x', '\n/harness20:webapp x', '/harness36:webapp', '/harness36:webappx y', '/Harness36:webapp x', '/harness360:webapp x', '\n/harness36:webapp x']) {
     assert.equal(EXPLICIT_WEBAPP.test(prompt), false, JSON.stringify(prompt));
   }
 });

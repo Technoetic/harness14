@@ -2997,7 +2997,7 @@ test("implementation instructions stay provider-neutral, permission-preserving, 
     const content = await readFile(join(repoRoot, step.target), "utf8");
     assert.deepEqual(scanForbiddenTokens(content), []);
     assert.doesNotMatch(content, /(?:progress|state)\.json|\.harness50-codex|transcript/i);
-    assert.doesNotMatch(content, /\/(?:webapp|harness-status|harness-reset)\b|\$(?:webapp|harness(?:20|36|50)-(?:status|reset))\b/i);
+    assert.doesNotMatch(content, /\/(?:webapp|harness-status|harness-reset)\b|\$(?:webapp|harness(?:14|20|36|50)-(?:status|reset))\b/i);
     assert.doesNotMatch(content, /\b(?:SessionStart|UserPromptSubmit|PreToolUse|Stop)\b|\bhooks?\b/i);
     assert.doesNotMatch(content, /(?:다음|후속)\s*(?:Step|단계)|\bnext\s+step\b/i);
     assertPlanningPermissionContract(content);
@@ -3777,7 +3777,7 @@ test("review instructions stay provider-neutral, permission-preserving, receipt-
     const content = await readFile(join(repoRoot, step.target), "utf8");
     assert.deepEqual(scanForbiddenTokens(content), []);
     assert.doesNotMatch(content, /(?:progress|state)\.json|\.harness50-codex|transcript/i);
-    assert.doesNotMatch(content, /\/(?:webapp|harness-status|harness-reset)\b|\$(?:webapp|harness(?:20|36|50)-(?:status|reset))\b/i);
+    assert.doesNotMatch(content, /\/(?:webapp|harness-status|harness-reset)\b|\$(?:webapp|harness(?:14|20|36|50)-(?:status|reset))\b/i);
     assert.doesNotMatch(content, /\b(?:SessionStart|UserPromptSubmit|PreToolUse|Stop)\b|\bhooks?\b/i);
     assert.doesNotMatch(content, /(?:다음|후속)\s*(?:Step|단계)|\bnext\s+step\b/i);
     assert.doesNotMatch(content, /\b(?:npx|html-bundler)\b|step\s*0?81|--if-present/i);
@@ -4809,7 +4809,7 @@ test("e2e instructions stay provider-neutral, permission-preserving, receipt-own
     const content = await readFile(join(repoRoot, step.target), "utf8");
     assert.deepEqual(scanForbiddenTokens(content), []);
     assert.doesNotMatch(content, /(?:progress|state)\.json|\.harness50-codex|transcript/i);
-    assert.doesNotMatch(content, /\/(?:webapp|harness-status|harness-reset)\b|\$(?:webapp|harness(?:20|36|50)-(?:status|reset))\b/i);
+    assert.doesNotMatch(content, /\/(?:webapp|harness-status|harness-reset)\b|\$(?:webapp|harness(?:14|20|36|50)-(?:status|reset))\b/i);
     assert.doesNotMatch(content, /(?:다음|후속)\s*(?:Step|단계)|\bnext\s+step\b/i);
     assert.doesNotMatch(content, /\b(?:npx|html-bundler)\b|step\s*0?(?:69|81|84|89|104|107)|retired validator/i);
     assert.doesNotMatch(content, /직접\s*(?:연쇄|chain)|hidden state|스마트\s*스킵|무한\s*반복|3[^.\n]{0,80}실패[^.\n]{0,80}(?:계속|진행)/i);

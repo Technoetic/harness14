@@ -32,7 +32,7 @@ command -v python3 >/dev/null 2>&1 || exit 0
 CONTROL="$(printf '%s' "$RAW" | python3 -c 'import json,re,sys
 d=json.load(sys.stdin)
 p=d.get("prompt") if isinstance(d,dict) else None
-print("control" if isinstance(p,str) and re.match(r"\s*/(harness(20|36|50):)?harness-(pause|resume|status|reset)(\s|$)",p) else "webapp" if isinstance(p,str) and re.match(r"[ \t]*/(harness(20|36|50):)?webapp[ \t]+\S",p) else "")' 2>/dev/null || true)"
+print("control" if isinstance(p,str) and re.match(r"\s*/(harness(14|20|36|50):)?harness-(pause|resume|status|reset)(\s|$)",p) else "webapp" if isinstance(p,str) and re.match(r"[ \t]*/(harness(14|20|36|50):)?webapp[ \t]+\S",p) else "")' 2>/dev/null || true)"
 case "$CONTROL" in control*) exit 0 ;; esac
 
 # The fourth field is '-' or the validated PAUSED line of a named pause (harness-rules 2-1); read

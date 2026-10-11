@@ -3,7 +3,7 @@
 case "$(uname -s 2>/dev/null)" in MINGW*|MSYS*|CYGWIN*) exit 0 ;; esac
 # webapp-trigger.sh — UserPromptSubmit hook (macOS/Linux)
 # Mirrors webapp-trigger.ps1 — only an explicit first-line `/webapp <topic>` (or
-# `/harness20:webapp <topic>`, with `/harness50:webapp` compatibility) bootstraps
+# `/harness14:webapp <topic>`, with `/harness50:webapp` compatibility) bootstraps
 # step_archive/, writes TOPIC.md, initializes
 # progress.json and emits a system-reminder forcing step001 entry. Natural-language prompts do
 # nothing. Progress that records completed steps, or cannot be read, is never overwritten: the
@@ -47,7 +47,7 @@ fi
 
 # trigger: the explicit command on the first line only, case-sensitive (EXPLICIT_WEBAPP in
 # lib/harness-activity.mjs). Natural-language requests never start a run.
-printf '%s\n' "$PROMPT" | head -n 1 | grep -Eq '^[[:blank:]]*/(harness(20|36|50):)?webapp[[:blank:]]+[^[:space:]]' || exit 0
+printf '%s\n' "$PROMPT" | head -n 1 | grep -Eq '^[[:blank:]]*/(harness(14|20|36|50):)?webapp[[:blank:]]+[^[:space:]]' || exit 0
 log "TRIGGER matched"
 
 # Codex coexistence (mirrors webapp-trigger.ps1): an existing Codex workflow is resumed,
@@ -59,7 +59,7 @@ if [ -e "$STEP_ARCHIVE/.harness50-codex/state.json" ]; then
   if command -v node >/dev/null 2>&1; then
     CODEX_LINE="$(node "$(dirname "${BASH_SOURCE[0]}")/lib/codex-workflow.mjs" "$PROJECT_ROOT" 2>/dev/null || true)"
   fi
-  [ -n "$CODEX_LINE" ] || CODEX_LINE="[HARNESS] WARNING: step_archive/.harness50-codex/state.json exists but is unreadable or incomplete - Claude hooks will not create progress.json or block Stop here. Inspect it with the harness20 plugin's codex/scripts/harness-state.mjs show and ask the user before repairing or resetting it."
+  [ -n "$CODEX_LINE" ] || CODEX_LINE="[HARNESS] WARNING: step_archive/.harness50-codex/state.json exists but is unreadable or incomplete - Claude hooks will not create progress.json or block Stop here. Inspect it with the harness14 plugin's codex/scripts/harness-state.mjs show and ask the user before repairing or resetting it."
   echo "[HARNESS] webapp trigger skipped: a Codex workflow owns this workspace, so step_archive/TOPIC/TOPIC.md and progress.json were left unchanged. Resume that workflow, or use a separate workspace for a different topic."
   printf '%s\n' "$CODEX_LINE"
   exit 0

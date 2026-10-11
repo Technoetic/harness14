@@ -3,7 +3,7 @@ const DEFAULTS = {
   audience: "기본값(사용자 미지정): 주제에 관심이 있는 초보 사용자를 전문 대상이 명시되면 그 대상을 우선한다.",
   interactive: "기본값(사용자 미지정): 직접 조작하고 결과를 확인할 수 있는 상호작용을 제공한다. 전문에 명시된 게임·도구·학습 활동을 기준으로 설계한다.",
   real_world_apps: "기본값(사용자 미지정): 전문의 명시 제공 자료와 현재 검증된 출력을 근거로 삼는다. 미확인 사실은 미확인으로 남기며 필수 계약 누락을 기록한다.",
-  constraints: "기본값(사용자 미지정): 전문에 명시된 구현·표현 제약을 우선한다. 추가 제약이 없으면 Harness20의 단일 HTML 산출물과 반응형·접근성 계약을 적용한다.",
+  constraints: "기본값(사용자 미지정): 전문에 명시된 구현·표현 제약을 우선한다. 추가 제약이 없으면 Harness14의 단일 HTML 산출물과 반응형·접근성 계약을 적용한다.",
   decisions: "기본 결정: 전문을 보존하고 미지정 항목에만 기본값을 적용한다. 내부 설계는 주제와 명시된 제약 안에서 결정한다. 추가 사용자 결정을 가정하지 않는다."
 };
 
@@ -188,7 +188,7 @@ export function prepareTopicContract(topic) {
   });
   const missing = FIELDS.filter(field => !fields.has(field));
   return [
-    "# Harness20 topic contract",
+    "# Harness14 topic contract",
     ...sections,
     `## initialization_notes\n\n기본값으로 보완한 항목: ${missing.join(", ") || "없음"}. 원문의 명시 조건이 기본값보다 우선한다.`,
     `## original_request\n\n${fencedLiteral(topic)}`

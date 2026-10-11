@@ -1,19 +1,19 @@
 {
-  "name": "harness20",
+  "name": "harness14",
   "owner": {
     "name": "Technoetic",
     "url": "https://github.com/Technoetic"
   },
   "metadata": {
-    "description": "harness20 marketplace: planning-first14 new runs; preserve existing20/36/50 workflows.",
-    "version": "4.2.0"
+    "description": "harness14 marketplace: planning-first14 new runs; preserve existing20/36/50 workflows.",
+    "version": "4.2.1"
   },
   "plugins": [
     {
-      "name": "harness20",
+      "name": "harness14",
       "source": "./",
       "description": "Web tutorial generator with a 14-step planning-first workflow for new runs, preserved existing 20/36/50 workflows, and optional offline trials. Windows + macOS/Linux.",
-      "version": "4.2.0",
+      "version": "4.2.1",
       "author": {
         "name": "Technoetic"
       },

@@ -67,3 +67,18 @@ test('bash MX hook also warns at old20 implementation9', { skip: windows && !git
   assert.equal(result.status, 0, result.stderr);
   assert.match(JSON.parse(result.stdout).hookSpecificOutput.additionalContext, /has no @MX tags/);
 });
+
+test('bash MX hook excludes harness14 installed files and preserves legacy exclusions', { skip: windows && !gitBash }, t => {
+  const f = fixture(t, 'planning-first-14-v1', 14, 3);
+  const ordinary = run({ ...f, project: f.project.replaceAll('\\', '/'), file: f.file.replaceAll('\\', '/') }, 'sh');
+  assert.match(JSON.parse(ordinary.stdout).hookSpecificOutput.additionalContext, /has no @MX tags/);
+  for (const name of ['harness14', 'harness20', 'harness36', 'harness50']) {
+    const directory = join(f.project, 'plugins', name);
+    mkdirSync(directory, { recursive: true });
+    const file = join(directory, 'installed.js');
+    writeFileSync(file, 'export const installed = 1;\n');
+    const result = run({ ...f, project: f.project.replaceAll('\\', '/'), file: file.replaceAll('\\', '/') }, 'sh');
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.stdout.trim(), '', name);
+  }
+});

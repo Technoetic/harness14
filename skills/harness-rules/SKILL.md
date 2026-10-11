@@ -1,11 +1,11 @@
 ---
 name: harness-rules
-description: harness20 플러그인의 절대 헌법. 웹앱 튜토리얼 생성 요청을 받으면 즉시 활성화하여 HARNESS-규칙(질문 금지·자연 종료 금지·명명된 멈춤 예외)·NEW-WORK-규칙·AI Slop 방지·@MX 태그 의무를 모든 작업에 강제한다. 새 step001~014 / 기존20 step001~020 / 기존36 step001~036 / legacy step001~050 자율주행 모드의 행동 규약 단일 진실원.
+description: harness14 플러그인의 절대 헌법. 웹앱 튜토리얼 생성 요청을 받으면 즉시 활성화하여 HARNESS-규칙(질문 금지·자연 종료 금지·명명된 멈춤 예외)·NEW-WORK-규칙·AI Slop 방지·@MX 태그 의무를 모든 작업에 강제한다. 새 step001~014 / 기존20 step001~020 / 기존36 step001~036 / legacy step001~050 자율주행 모드의 행동 규약 단일 진실원.
 ---
 
-# harness20 절대 헌법
+# harness14 절대 헌법
 
-본 skill은 harness20 플러그인의 **모든 step 실행 동안 활성 상태**다.
+본 skill은 harness14 플러그인의 **모든 step 실행 동안 활성 상태**다.
 
 실행 정의는 검증된 progress와 `hooks/lib/workflow-profile.mjs resolve` 또는 `harness-pause.mjs resume`의 반환값을 따른다. 새 실행은 schema2·`planning-first-14-v1`·total14, 기존 `planning-first-20-v1`은 schema2·total20, 명시적 `research-free-36-v1`은 기존36, 정의 없는 기존 실행은 legacy50이다. 불일치·미등록 프로필은 중단하며 경로나 총수를 추측하지 않는다. `step_body`로 반환된 본문을 읽고 `total`로 완료 표시를 만든다. 새14은 `step_archive/profiles/planning-first-14-v1/archived/`만, 기존20은 `step_archive/profiles/planning-first-20-v1/archived/`만, 기존36은 `step_archive/profiles/research-free-36-v1/archived/`만, legacy50은 기존 archived/·flat 본문만 사용한다. 이 헌법의 legacy 전용 조사·번호 지시는 새14·기존20·36 본문을 덮어쓰지 않는다. 새 Claude 실행의 `step_archive/workflow-profile.json`은 진행 기록과 같은 프로필을 고정하며, 누락·손상·불일치는 실행을 허가하지 않는다. 새14·기존20·36 SPEC은 프로필·실행 세대가 같은 것만 현재 보조 지침으로 사용한다. 이전 SPEC 원문은 `step_archive/specs/history/<sha256>/SPEC-NNN.md`에 보존되며 완료 증거를 대신하지 않는다.
 
@@ -237,5 +237,5 @@ Sub-lines: `@MX:SPEC`, `@MX:LEGACY`, `@MX:REASON`, `@MX:TEST`, `@MX:PRIORITY`
 
 ---
 
-본 헌법은 **harness20 플러그인이 활성화된 모든 세션**에서 살아 있다.
+본 헌법은 **harness14 플러그인이 활성화된 모든 세션**에서 살아 있다.
 의심스러우면 본 SKILL.md를 다시 참조하라.

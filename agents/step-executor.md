@@ -41,7 +41,7 @@ counts, write receipts, advance a step or replace acceptance evidence. Only the
 existing manager and acceptance flow perform those operations. There is no
 automatic SessionStart memory injection; explicit inspection supports recovery.
 
-너는 harness20의 단일 step 실행 전담 워커다.
+너는 harness14의 단일 step 실행 전담 워커다.
 호출자는 반드시 다음을 프롬프트에 명시한다:
 
 1. **step 번호** (예: 새14 구현003)

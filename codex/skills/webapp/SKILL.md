@@ -1,9 +1,9 @@
 ---
 name: webapp
-description: Use when a user invokes $webapp to start, resume, pause, or advance a Harness20 workflow in Codex, asks a direct Jev question, or has an authorized Jev-first preference covering the current request, including outside a workflow.
+description: Use when a user invokes $webapp to start, resume, pause, or advance a Harness14 workflow in Codex, asks a direct Jev question, or has an authorized Jev-first preference covering the current request, including outside a workflow.
 ---
 
-# Harness20 Webapp
+# Harness14 Webapp
 
 **Route the request before workflow operations.** For an explicit direct Jev question
 or an authorized Jev-first preference covering an ordinary request, follow Jev-first

@@ -303,7 +303,7 @@ test("SessionStart reports corrupt state concisely without overwrite or disclosu
   assert.equal(result.stderr, "");
   assert.equal(
     result.output.hookSpecificOutput.additionalContext,
-    "Harness20 state is unreadable. Run $harness20-status, then repair or reset the Codex workflow."
+    "Harness14 state is unreadable. Run $harness14-status, then repair or reset the Codex workflow."
   );
   assert.ok(Buffer.from(await readFile(paths.statePath)).equals(corrupt));
   assert.doesNotMatch(result.stdout, /sk-proj|password|node:internal|hook-lifecycle|\\|\/[A-Za-z]/i);
@@ -356,9 +356,11 @@ test(`${agentType} subagent prompts preserve parent state and lifecycle events`,
 });
 }
 
-test("harness20 exact control-skill calls and legacy Harness36 and Harness50 aliases bypass pause", async () => {
+test("harness14 exact control-skill calls and legacy Harness20, Harness36 and Harness50 aliases bypass pause", async () => {
   const accepted = [
     "$webapp", "$webapp resume", "$webapp build a small dashboard",
+    "$harness14-status", "$harness14-reset", "$harness14:webapp", "$harness14:webapp resume",
+    "$harness14:harness14-status", "$harness14:harness14-reset", "$harness14:status", "$harness14:reset",
     "$harness20-status", "$harness20-reset", "$harness20:webapp", "$harness20:webapp resume",
     "$harness20:harness20-status", "$harness20:harness20-reset", "$harness20:status", "$harness20:reset",
     "$harness36-status", "$harness36-reset", "$harness36:webapp", "$harness36:webapp resume",
@@ -381,6 +383,8 @@ test("harness20 exact control-skill calls and legacy Harness36 and Harness50 ali
   const rejected = [
     "please run $webapp resume",
     "$webappx",
+    "$harness14:webappx", "$harness14:harness14-status now", "$harness14-status now", "$harness14-reset-now",
+    "$harness14:harness20-status", "$harness20:harness14-reset", "$Harness14:status", "$harness140:status",
     "$harness20:webappx", "$harness20:harness20-status now", "$harness20-status now", "$harness20-reset-now",
     "$harness20:harness36-status", "$harness20:harness50-reset", "$harness36:harness20-reset", "$harness50:harness20-status",
     "$Harness20:status", "$harness200:status",

@@ -6,7 +6,7 @@ import {
   runHookDirect
 } from "../scripts/lib/hook-io.mjs";
 
-const CONTROL_PROMPT = /^(?:\$(?:harness20:)?harness20-(?:status|reset)|\$(?:harness36:)?harness36-(?:status|reset)|\$(?:harness50:)?harness50-(?:status|reset)|\$(?:harness20|harness36|harness50):(?:status|reset)|\$(?:(?:harness20|harness36|harness50):)?webapp(?: [^\r\n]+)?)$/;
+const CONTROL_PROMPT = /^(?:\$(?:harness14:)?harness14-(?:status|reset)|\$(?:harness20:)?harness20-(?:status|reset)|\$(?:harness36:)?harness36-(?:status|reset)|\$(?:harness50:)?harness50-(?:status|reset)|\$(?:harness14|harness20|harness36|harness50):(?:status|reset)|\$(?:(?:harness14|harness20|harness36|harness50):)?webapp(?: [^\r\n]+)?)$/;
 
 function unsafe(error) {
   return error?.code === "WORKSPACE_PATH_UNSAFE" || error?.code === "HOOK_WORKSPACE_UNSAFE";

@@ -36,7 +36,7 @@ export const STEP_COUNT = 50;
 export const ACTIVE_STATUSES = Object.freeze(['active', 'running', 'in_progress']);
 export const MAX_PROGRESS_BYTES = 1024 * 1024;
 // First line only: '^' without the m flag anchors at the start of the prompt. Case-sensitive.
-export const EXPLICIT_WEBAPP = /^[ \t]*\/(?:harness(?:20|36|50):)?webapp[ \t]+\S/;
+export const EXPLICIT_WEBAPP = /^[ \t]*\/(?:harness(?:14|20|36|50):)?webapp[ \t]+\S/;
 // Which run phases start each registered hook. The two guards run only where a Harness50 run is
 // established (active, paused, drift or finished Claude run, or a Codex workspace, where a Claude
 // session has no other plugin guard); elsewhere the host permission checks apply, and Bash is never
