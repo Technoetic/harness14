@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { cp, link, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { cp, link, mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,7 +18,7 @@ async function inspect(root, options = {}) {
   return module.inspectInstructionBudget(root, options);
 }
 async function fixture(t) {
-  const root = await mkdtemp(join(tmpdir(), 'h14-instruction-'));
+  const root = await realpath(await mkdtemp(join(tmpdir(), 'h14-instruction-')));
   t.after(() => rm(root, { recursive: true, force: true }));
   const registry = JSON.parse(await readFile(join(repo, 'scripts/instruction-budget.json'), 'utf8'));
   for (const file of registry.files) {
