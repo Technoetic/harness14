@@ -250,7 +250,7 @@ test("SessionStart accepts the official full shape and all documented sources wi
     assert.deepEqual(Object.keys(result.output), ["hookSpecificOutput"]);
     assert.equal(result.output.hookSpecificOutput.hookEventName, "SessionStart");
     const context = result.output.hookSpecificOutput.additionalContext;
-    assert.match(context, /^Harness20: running, 0\/50 complete\./);
+    assert.match(context, /^Harness14: running, 0\/50 complete\./);
     assert.match(context, /Topic: step_archive\/TOPIC\/TOPIC\.md\./);
     assert.match(context, /Next: Step 001\./);
     assert.match(context, /\$webapp resume\.$/);
